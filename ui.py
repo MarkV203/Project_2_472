@@ -153,7 +153,7 @@ class WildfireMonitoringUI:
 
     def schedule_data_update(self):
         """
-        Schedule periodic updates to fetch and display new sensor data.
+        Schedule periodic updates to fetch and display new sensor data
         """
         self.fetch_new_sensor_data()  # Fetch new data
         self.update_display()        # Update display for the currently selected sensor
