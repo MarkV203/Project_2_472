@@ -107,7 +107,7 @@ class WildfireMonitoringUI:
 
     def get_color(self, value, thresholds, reverse=False):
         """
-        Determine the color based on thresholds.
+        Determine the color based on thresholds
         """
         low, high = thresholds
         if reverse:
