@@ -15,14 +15,18 @@ Key Features:
   - Thread safety with mutex locks: Prevents data corruption during concurrent access to shared resources.
   - Real-time logging: Displays historical sensor data for accountability and trend analysis.
   - Color-coded alerts: Visual indicators for normal, warning, and critical conditions, aiding rapid decision-making.
+
 Significance of the Project:
+
   Meaningfulness:
     -  Wildfires pose a severe threat to ecosystems, human settlements, and climate stability. Early detection is vital.
     -  By simulating a wildfire monitoring system, this project showcases how such systems could integrate with IoT technologies to mitigate disasters.
+  
   Novelty:
     -  Unlike typical simulation dashboards, this project emphasizes concurrent operations (via multithreading) while maintaining data integrity using mutex locking.
     -  The system mimics real-world challenges, such as sensor delays and overlapping data access, offering a practical approach to solving these issues.
     -  Provides a modular design where more sensors or real data sources can be added seamlessly in the future.
+
 Installation and Instructions to Use 
 Installation:
 Prerequisites:
