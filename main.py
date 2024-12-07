@@ -3,6 +3,12 @@ import random
 from time import sleep
 import tkinter as tk
 from ui import WildfireMonitoringUI
+import weatherGeneration as wg
+
+# initialize the sensor data
+for i in range(1, 4):
+   sensor = wg.Sensor(i)
+   sensor.weatherCollection(i, 10)
 
 # Mutex lock for sensor data updates
 sensor_lock = threading.Lock()
