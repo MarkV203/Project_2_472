@@ -39,12 +39,15 @@ The primary objective of this project is to develop a robust **Wildfire Monitori
 - Tkinter library (pre-installed with Python on most systems).
 
 #### Steps
-1. Download the `main.py` and `ui.py` files into the same directory.
+1. Download the `main.py`, `populateListView.py`,`ListViewUI.py`, and `weatherGeneration.py` files into the same directory.
 2. Launch the program by running `main.py`, and the Wildfire Dashboard should appear.
 
 ---
 
 ## Structure of the Code
+The base of each file is called by `main.py` which begins by creating an instance of `populateListView.py` and then creating a given number of threads.
+Each thread calls `weatherGeneration.py` to simulate each sensor collecting data and stores that data in a queue and in a csv document. 
+The `populateListView.py` then calls `ListViewUI.py` and begins to fill it with the queued data. 
 
 ### Code Structure Diagram:
 
@@ -58,9 +61,25 @@ The primary objective of this project is to develop a robust **Wildfire Monitori
   - Monitoring tab for real-time data visualization.
   - Log tab for recording and reviewing sensor updates.
   - Helper methods for data display, color-coded alerts, and threshold checks.
+ 
+#### `populateListView.py`
+ - Defines the `ListViewApp` class:
+    - creates the initial queue that will store values on the UI
+    - creates and instance of `list_view`
+    - populates each `list_view` by sending the data to `ListViewUI.py`
+
+#### `ListViewUI.py`
+ - Defines the `WildfireListUI`
+   - Organises the view in a grid that will place more rows depening on how many sensors are declared
+   - Sets the data received by `populateListView.py`
+#### `weatherGeneration.py`
+  - Defines the `Sensor` class:
+     - Each instance of `Sensor` keeps track of its ID, data_queue, temperature, humidity, and wind speed
+     - Randomly generates an initial state and then iterates it slightly each loop
+     - sends the data to a csv file and the data queue that is used by `populateListView.py`
 
 ### UI Integration
-- The `update_display` method dynamically refreshes the monitoring tab based on user selection.
+- The `update_display` method dynamically refreshes the monitoring tab.
 
 ---
 
@@ -88,6 +107,7 @@ The primary objective of this project is to develop a robust **Wildfire Monitori
 - Concurrent updates for all three sensors completed without data corruption.
 - Fire likelihood detection accurately flagged abnormal conditions (e.g., high temperature, low humidity).
 - The system maintained smooth UI performance even with multiple threads running simultaneously.
+- all csv documents attached to this repo are an example of how sensor data is shown. Each runtime of the program will result in an updated csv document
 
 ---
 
