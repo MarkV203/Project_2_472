@@ -122,8 +122,55 @@ class WildfireListUI:
     It will be sent from the main file
     '''
     def setData(self, sensor, data):
-        self.temp_entry_list[sensor - 1].insert(0, data['Temperature'])
-        self.humi_entry_list[sensor - 1].insert(0, data['Humidity'])
-        self.wind_entry_list[sensor - 1].insert(0, data['Wind Speed'])
+        # Set Temperature
+        temp = data['Temperature']
+        self.temp_entry_list[sensor - 1].delete(0, tk.END)
+        self.temp_entry_list[sensor - 1].insert(0, temp)
+        self.temp_entry_list[sensor - 1].config(bg=self.get_color(temp, "temperature"))
+
+        # Set Humidity
+        humi = data['Humidity']
+        self.humi_entry_list[sensor - 1].delete(0, tk.END)
+        self.humi_entry_list[sensor - 1].insert(0, humi)
+        self.humi_entry_list[sensor - 1].config(bg=self.get_color(humi, "humidity"))
+
+        # Set Wind Speed
+        wind = data['Wind Speed']
+        self.wind_entry_list[sensor - 1].delete(0, tk.END)
+        self.wind_entry_list[sensor - 1].insert(0, wind)
+        self.wind_entry_list[sensor - 1].config(bg=self.get_color(wind, "wind"))
+
+
+    def get_color(self, value, sensor_type):
+        """
+        Determine the background color for the sensor value.
+        - Green: Normal
+        - Yellow: Warning
+        - Red: Critical
+        """
+        thresholds = {
+            "temperature": {  # Celsius
+                "normal": (-10, 30),  # Safe range
+                "warning": (30, 40),  # High temperature
+            },
+            "humidity": {  # Percentage
+                "normal": (30, 70),  # Safe range
+                "warning": (70, 90),  # High humidity (potential rain warning)
+            },
+            "wind": {  # m/s
+                "normal": (0, 10),  # Safe range
+                "warning": (10, 15),  # High wind speeds
+            },
+        }
+
+        if sensor_type in thresholds:
+            if thresholds[sensor_type]["normal"][0] <= value <= thresholds[sensor_type]["normal"][1]:
+                return "green"  # Normal range
+            elif thresholds[sensor_type]["warning"][0] <= value <= thresholds[sensor_type]["warning"][1]:
+                return "yellow"  # Warning range
+            else:
+                return "red"  # Critical range
+        return "white"  # Default fallback color
+
 
 # Create an instance of WildfireListUI
