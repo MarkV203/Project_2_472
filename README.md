@@ -110,6 +110,8 @@ The program’s execution begins with `main.py`, which initializes multithreadin
 - Provided a transparent system with real-time logging capabilities.
 
 ### Demonstrations
+Video Presentation Link: https://youtu.be/ZSt13-u6up4
+
 Simulated scenarios:
 - High temperature and low humidity triggered "Fire Likely" alerts.
 - Normal conditions displayed as "Fire Unlikely."
