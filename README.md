@@ -71,9 +71,6 @@ The program’s execution begins with `main.py`, which initializes multithreadin
   - Randomly generates initial conditions and updates data iteratively.
   - Sends data to both a CSV file and a shared queue.
 
-### Data Flow Diagram
-> Diagram placeholder for illustrating sensor data generation, processing, and display.
-
 ---
 
 ## Functionalities and Test Results
